@@ -3,13 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ajustedecurvas;
+package mx.itson.ajusteDeCurvas.entidades;
 
 /**
  *
  * @author Fernando
  */
-public class AjusteDeCurvas {
+public class Main {
 
     /**
      * @param args the command line arguments

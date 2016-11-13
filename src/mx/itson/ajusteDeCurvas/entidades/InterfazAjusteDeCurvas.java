@@ -5,6 +5,8 @@
  */
 package mx.itson.ajusteDeCurvas.entidades;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
@@ -12,18 +14,19 @@ import javax.swing.table.TableModel;
  *
  * @author Fernando
  */
-public class InterfazAjusteDeCurva extends javax.swing.JFrame {
+public class InterfazAjusteDeCurvas extends javax.swing.JFrame {
 
     /**
      * Creates new form InterfazAjusteDeCurva
      */
-    public InterfazAjusteDeCurva() {
+    public InterfazAjusteDeCurvas() {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setResizable(false);
     }
     
     char[] letras = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j'};
+    String[] equis = {"","x","x^2","x^3","x^4","x^5","x^6","x^7","x^8","x^9","x^10"};
     //variables para la tabulacion
     int elementos;
     double[][] tabulacion;
@@ -39,8 +42,7 @@ public class InterfazAjusteDeCurva extends javax.swing.JFrame {
     //matriz
     double[][] matriz;
     
-    
-    
+    String funcion = "";
     
     public void llenarTablaTabulacion(int e) {
         DefaultTableModel tabla = new DefaultTableModel();
@@ -63,10 +65,9 @@ public class InterfazAjusteDeCurva extends javax.swing.JFrame {
         TableModel tabla = tb_tabulacion.getModel();
         tabulacion = new double[e][2];
         
-        for (int i = 0; i < e; i++) // ciclo para añadir datos
-        {
+        for (int i = 0; i < e; i++) { // ciclo para añadir datos a la matriz tabulación
             for (int j = 0; j < 2; j++) {
-                double numero = Double.parseDouble((String) tabla.getValueAt(i, j));
+                double numero = Double.parseDouble(tabla.getValueAt(i, j).toString());
                 
                 tabulacion[i][j] = numero;
                 //System.out.println("a: " + tabulacion[i][j]);
@@ -86,6 +87,7 @@ public class InterfazAjusteDeCurva extends javax.swing.JFrame {
         
         aplicarMetodo(tipoGrafica);
         llenarTablaResultados(tipoGrafica);
+        generarFuncion(tipoGrafica);
     }
     
     public void llenarTablaMatriz(int e) {
@@ -263,6 +265,35 @@ public class InterfazAjusteDeCurva extends javax.swing.JFrame {
         }
     }
     
+    public void generarFuncion(int e){
+        TableModel tabla = tb_resultados.getModel();
+        
+        for (int i = 0; i < e; i++) {
+            double resultado = redondearDecimales(Double.parseDouble(tabla.getValueAt(i, 0).toString()), 4);
+            
+            if (resultado > 0) { //evaluar si es positivo
+                if (i != 0) {
+                    funcion += "+";
+                }
+            }
+            
+            funcion += String.valueOf(resultado) + equis[i];
+            
+        }
+        
+        txt_resultado.setText(funcion);
+        funcion = "";
+    }
+    
+    public static double redondearDecimales(double valor, int decimales) {
+        double resultado = valor;
+        BigDecimal big = new BigDecimal(resultado);
+        big = big.setScale(decimales, RoundingMode.HALF_UP);
+        resultado = Double.parseDouble(big.toString());
+        
+        return resultado;
+    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -315,15 +346,19 @@ public class InterfazAjusteDeCurva extends javax.swing.JFrame {
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel3.setText("Función resultante:");
         jPanel1.add(jLabel3);
-        jLabel3.setBounds(80, 340, 120, 20);
+        jLabel3.setBounds(40, 340, 120, 20);
+
+        txt_resultado.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jPanel1.add(txt_resultado);
-        txt_resultado.setBounds(210, 340, 260, 20);
+        txt_resultado.setBounds(170, 340, 340, 20);
 
         btn_graficar.setText("Graficar");
         jPanel1.add(btn_graficar);
-        btn_graficar.setBounds(480, 330, 73, 40);
+        btn_graficar.setBounds(520, 330, 80, 40);
+
+        txt_elementos.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jPanel1.add(txt_elementos);
-        txt_elementos.setBounds(300, 90, 110, 20);
+        txt_elementos.setBounds(300, 90, 110, 21);
 
         btn_OK.setText("OK");
         btn_OK.addActionListener(new java.awt.event.ActionListener() {
@@ -353,7 +388,7 @@ public class InterfazAjusteDeCurva extends javax.swing.JFrame {
         jPanel1.add(jLabel4);
         jLabel4.setBounds(180, 60, 110, 20);
 
-        cb_tipoGrafica.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        cb_tipoGrafica.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         cb_tipoGrafica.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Recta", "Parábola", "Cúbica", "Grado 4", "Grado 5", "Grado 6" }));
         jPanel1.add(cb_tipoGrafica);
         cb_tipoGrafica.setBounds(300, 60, 110, 21);
@@ -369,7 +404,7 @@ public class InterfazAjusteDeCurva extends javax.swing.JFrame {
         jScrollPane2.setViewportView(tb_matriz);
 
         jPanel1.add(jScrollPane2);
-        jScrollPane2.setBounds(180, 150, 320, 160);
+        jScrollPane2.setBounds(180, 150, 320, 170);
 
         btn_calcular.setText("Calcular");
         btn_calcular.addActionListener(new java.awt.event.ActionListener() {
@@ -403,7 +438,7 @@ public class InterfazAjusteDeCurva extends javax.swing.JFrame {
         jScrollPane3.setViewportView(tb_resultados);
 
         jPanel1.add(jScrollPane3);
-        jScrollPane3.setBounds(520, 150, 100, 160);
+        jScrollPane3.setBounds(520, 150, 100, 170);
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -449,7 +484,7 @@ public class InterfazAjusteDeCurva extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new InterfazAjusteDeCurva().setVisible(true);
+                new InterfazAjusteDeCurvas().setVisible(true);
             }
         });
     }
