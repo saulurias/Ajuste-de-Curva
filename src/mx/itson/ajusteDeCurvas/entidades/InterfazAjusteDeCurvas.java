@@ -5,10 +5,15 @@
  */
 package mx.itson.ajusteDeCurvas.entidades;
 
+import JfreeChart.FormularioChart;
+import JfreeChart.GraficasLineal;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
+import net.objecthunter.exp4j.Expression;
+import net.objecthunter.exp4j.ExpressionBuilder;
 
 /**
  *
@@ -39,8 +44,11 @@ public class InterfazAjusteDeCurvas extends javax.swing.JFrame {
     //arreglos para las sumatorias
     double[] sumX, sumXF;
     
-    //matriz
+    //matriz del resultado
     double[][] matriz;
+    
+    //matriz de la grafica
+    double[][] grafica;
     
     String funcion = "";
     
@@ -88,6 +96,8 @@ public class InterfazAjusteDeCurvas extends javax.swing.JFrame {
         aplicarMetodo(tipoGrafica);
         llenarTablaResultados(tipoGrafica);
         generarFuncion(tipoGrafica);
+        
+        
     }
     
     public void llenarTablaMatriz(int e) {
@@ -285,7 +295,7 @@ public class InterfazAjusteDeCurvas extends javax.swing.JFrame {
         funcion = "";
     }
     
-    public static double redondearDecimales(double valor, int decimales) {
+    public double redondearDecimales(double valor, int decimales) {
         double resultado = valor;
         BigDecimal big = new BigDecimal(resultado);
         big = big.setScale(decimales, RoundingMode.HALF_UP);
@@ -294,7 +304,46 @@ public class InterfazAjusteDeCurvas extends javax.swing.JFrame {
         return resultado;
     }
     
+    //Función con exp4j
+    public double f(String funcion, double x) { //funcion
+        Expression e = new ExpressionBuilder(funcion) //clase de la libreria exp4j que lee funciones
+                .variables("x") //se establece la variable x
+                .build() //se construye
+                .setVariable("x", x); //establecer lo que vale x
+        
+        double resultado = e.evaluate(); //se evalua la función
+        return resultado;
+    }
+    
+    public void generarPuntosGrafica(String funcion) {
+        grafica = new double[201][2]; //guardar tabulacion de la grafica desde -10 hasta 10
+        double numerador = -10;
+        for (int j = 0; j < 2; j++) { //recorrer la matriz grafica
+            for (int i = 0; i < 201; i++) {
+                if (j == 0) {
+                    grafica[i][j] = redondearDecimales(numerador, 2); //redondear el numerador
+                    numerador+=0.1;
+                }
+                else {
+                    grafica[i][j] = f(funcion, redondearDecimales(numerador, 4)); //redondear el numerador y aplicar la funcion f(x)
+                    numerador+=0.1;
+                }
+                //System.out.println("grafica: "+grafica[i][j]);
+            }
+            numerador = -10;
+        }
+        
+    }
+    
+    public void llamarFormularioChart(double[][] grafica, int l1, double[][] tabulacion, int l2) {
+        FormularioChart ventana = new FormularioChart();
+        ventana.setVisible(true);
 
+        GraficasLineal g = new GraficasLineal();
+        g.Graficar(grafica, l1, tabulacion, l2);
+
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -353,6 +402,11 @@ public class InterfazAjusteDeCurvas extends javax.swing.JFrame {
         txt_resultado.setBounds(170, 340, 340, 20);
 
         btn_graficar.setText("Graficar");
+        btn_graficar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_graficarActionPerformed(evt);
+            }
+        });
         jPanel1.add(btn_graficar);
         btn_graficar.setBounds(520, 330, 80, 40);
 
@@ -470,6 +524,18 @@ public class InterfazAjusteDeCurvas extends javax.swing.JFrame {
     private void btn_calcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_calcularActionPerformed
         llenarTabulacion(elementos);
     }//GEN-LAST:event_btn_calcularActionPerformed
+
+    private void btn_graficarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_graficarActionPerformed
+        if (!txt_resultado.getText().equals("")) {
+            //generar matriz graficar
+            generarPuntosGrafica(txt_resultado.getText());
+            llamarFormularioChart(grafica, 201, tabulacion, elementos);
+
+        }
+        else {
+            JOptionPane.showMessageDialog(this, "No hay función para graficar");
+        }
+    }//GEN-LAST:event_btn_graficarActionPerformed
 
     /**
      * @param args the command line arguments
