@@ -1,4 +1,4 @@
-package JfreeChart;
+package mx.itson.ajusteDeCurvas.JfreeChart;
 
 import javax.swing.UIManager;
 
@@ -24,7 +24,6 @@ public class FormularioChart extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Graficando función");
-        setMaximumSize(new java.awt.Dimension(503, 322));
         setMinimumSize(new java.awt.Dimension(503, 322));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));

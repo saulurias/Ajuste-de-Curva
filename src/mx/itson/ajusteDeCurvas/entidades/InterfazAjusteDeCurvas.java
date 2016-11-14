@@ -5,8 +5,8 @@
  */
 package mx.itson.ajusteDeCurvas.entidades;
 
-import JfreeChart.FormularioChart;
-import JfreeChart.GraficasLineal;
+import mx.itson.ajusteDeCurvas.JfreeChart.FormularioChart;
+import mx.itson.ajusteDeCurvas.JfreeChart.GraficasLineal;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import javax.swing.JOptionPane;
