@@ -28,6 +28,7 @@ public class InterfazAjusteDeCurvas extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setResizable(false);
+        this.setSize(755, 500);
     }
     
     char[] letras = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j'};
@@ -358,70 +359,57 @@ public class InterfazAjusteDeCurvas extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         txt_resultado = new javax.swing.JTextField();
-        btn_graficar = new javax.swing.JButton();
         txt_elementos = new javax.swing.JTextField();
-        btn_OK = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tb_tabulacion = new javax.swing.JTable();
         jLabel4 = new javax.swing.JLabel();
         cb_tipoGrafica = new javax.swing.JComboBox<>();
         jScrollPane2 = new javax.swing.JScrollPane();
         tb_matriz = new javax.swing.JTable();
-        btn_calcular = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         tb_resultados = new javax.swing.JTable();
         jLabel7 = new javax.swing.JLabel();
+        btn_aceptar = new javax.swing.JButton();
+        btn_calcular = new javax.swing.JButton();
+        btn_graficar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Ajuste de curvas");
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jPanel1.setBackground(new java.awt.Color(217, 233, 238));
         jPanel1.setLayout(null);
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel1.setBackground(new java.awt.Color(9, 165, 165));
+        jLabel1.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Calculando una curva");
+        jLabel1.setOpaque(true);
         jPanel1.add(jLabel1);
-        jLabel1.setBounds(10, 10, 620, 29);
+        jLabel1.setBounds(0, -1, 750, 50);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel2.setText("Elementos de la tabulación:");
         jPanel1.add(jLabel2);
-        jLabel2.setBounds(130, 90, 160, 20);
+        jLabel2.setBounds(170, 100, 160, 20);
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel3.setText("Función resultante:");
         jPanel1.add(jLabel3);
-        jLabel3.setBounds(40, 340, 120, 20);
+        jLabel3.setBounds(30, 420, 110, 20);
 
         txt_resultado.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jPanel1.add(txt_resultado);
-        txt_resultado.setBounds(170, 340, 340, 20);
-
-        btn_graficar.setText("Graficar");
-        btn_graficar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_graficarActionPerformed(evt);
-            }
-        });
-        jPanel1.add(btn_graficar);
-        btn_graficar.setBounds(520, 330, 80, 40);
+        txt_resultado.setBounds(150, 420, 450, 20);
 
         txt_elementos.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jPanel1.add(txt_elementos);
-        txt_elementos.setBounds(300, 90, 110, 21);
-
-        btn_OK.setText("OK");
-        btn_OK.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_OKActionPerformed(evt);
-            }
-        });
-        jPanel1.add(btn_OK);
-        btn_OK.setBounds(420, 70, 60, 30);
+        txt_elementos.setBounds(340, 100, 110, 21);
 
         tb_tabulacion.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -434,18 +422,18 @@ public class InterfazAjusteDeCurvas extends javax.swing.JFrame {
         jScrollPane1.setViewportView(tb_tabulacion);
 
         jPanel1.add(jScrollPane1);
-        jScrollPane1.setBounds(20, 150, 140, 130);
+        jScrollPane1.setBounds(20, 180, 120, 150);
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel4.setText("Tipo de gráfica:");
         jPanel1.add(jLabel4);
-        jLabel4.setBounds(180, 60, 110, 20);
+        jLabel4.setBounds(220, 70, 110, 20);
 
         cb_tipoGrafica.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         cb_tipoGrafica.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Recta", "Parábola", "Cúbica", "Grado 4", "Grado 5", "Grado 6" }));
         jPanel1.add(cb_tipoGrafica);
-        cb_tipoGrafica.setBounds(300, 60, 110, 21);
+        cb_tipoGrafica.setBounds(340, 70, 110, 21);
 
         tb_matriz.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -458,28 +446,25 @@ public class InterfazAjusteDeCurvas extends javax.swing.JFrame {
         jScrollPane2.setViewportView(tb_matriz);
 
         jPanel1.add(jScrollPane2);
-        jScrollPane2.setBounds(180, 150, 320, 170);
+        jScrollPane2.setBounds(160, 180, 430, 200);
 
-        btn_calcular.setText("Calcular");
-        btn_calcular.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_calcularActionPerformed(evt);
-            }
-        });
-        jPanel1.add(btn_calcular);
-        btn_calcular.setBounds(50, 293, 80, 30);
-
-        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel5.setBackground(new java.awt.Color(9, 165, 165));
+        jLabel5.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("Tabular:");
+        jLabel5.setOpaque(true);
         jPanel1.add(jLabel5);
-        jLabel5.setBounds(60, 130, 60, 15);
+        jLabel5.setBounds(20, 150, 120, 30);
 
-        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel6.setBackground(new java.awt.Color(9, 165, 165));
+        jLabel6.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 14)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("Resultados:");
+        jLabel6.setOpaque(true);
         jPanel1.add(jLabel6);
-        jLabel6.setBounds(520, 130, 100, 15);
+        jLabel6.setBounds(610, 150, 120, 30);
 
         tb_resultados.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -492,34 +477,73 @@ public class InterfazAjusteDeCurvas extends javax.swing.JFrame {
         jScrollPane3.setViewportView(tb_resultados);
 
         jPanel1.add(jScrollPane3);
-        jScrollPane3.setBounds(520, 150, 100, 170);
+        jScrollPane3.setBounds(610, 180, 120, 190);
 
-        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel7.setBackground(new java.awt.Color(9, 165, 165));
+        jLabel7.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 14)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setText("Resultado de la matriz:");
+        jLabel7.setOpaque(true);
         jPanel1.add(jLabel7);
-        jLabel7.setBounds(270, 130, 140, 15);
+        jLabel7.setBounds(160, 150, 430, 30);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 640, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
+        btn_aceptar.setBackground(new java.awt.Color(117, 215, 216));
+        btn_aceptar.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
+        btn_aceptar.setText("Aceptar");
+        btn_aceptar.setBorder(javax.swing.BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(11, 137, 191)));
+        btn_aceptar.setContentAreaFilled(false);
+        btn_aceptar.setOpaque(true);
+        btn_aceptar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_aceptarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btn_aceptar);
+        btn_aceptar.setBounds(470, 70, 100, 50);
+
+        btn_calcular.setBackground(new java.awt.Color(117, 215, 216));
+        btn_calcular.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
+        btn_calcular.setText("Calcular");
+        btn_calcular.setBorder(javax.swing.BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(11, 137, 191)));
+        btn_calcular.setContentAreaFilled(false);
+        btn_calcular.setOpaque(true);
+        btn_calcular.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_calcularActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btn_calcular);
+        btn_calcular.setBounds(30, 350, 100, 50);
+
+        btn_graficar.setBackground(new java.awt.Color(117, 215, 216));
+        btn_graficar.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
+        btn_graficar.setText("Graficar");
+        btn_graficar.setBorder(javax.swing.BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(11, 137, 191)));
+        btn_graficar.setContentAreaFilled(false);
+        btn_graficar.setOpaque(true);
+        btn_graficar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_graficarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btn_graficar);
+        btn_graficar.setBounds(620, 400, 100, 50);
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 750, 470));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btn_OKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_OKActionPerformed
-        elementos = Integer.parseInt(txt_elementos.getText());
-        llenarTablaTabulacion(elementos);
-    }//GEN-LAST:event_btn_OKActionPerformed
+    private void btn_aceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_aceptarActionPerformed
+        if (!txt_elementos.getText().equals("")) {
+            elementos = Integer.parseInt(txt_elementos.getText());
+            llenarTablaTabulacion(elementos);
+        }
+        else {
+            JOptionPane.showMessageDialog(this, "Falta añadir el número de elementos");
+        }
+    }//GEN-LAST:event_btn_aceptarActionPerformed
 
     private void btn_calcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_calcularActionPerformed
         llenarTabulacion(elementos);
@@ -556,7 +580,7 @@ public class InterfazAjusteDeCurvas extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btn_OK;
+    private javax.swing.JButton btn_aceptar;
     private javax.swing.JButton btn_calcular;
     private javax.swing.JButton btn_graficar;
     private javax.swing.JComboBox<String> cb_tipoGrafica;
