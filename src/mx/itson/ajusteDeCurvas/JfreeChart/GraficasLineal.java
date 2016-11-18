@@ -62,7 +62,7 @@ public class GraficasLineal {
         // muestra los valores de cada punto XY
         XYItemLabelGenerator xy = new StandardXYItemLabelGenerator();
         renderer.setBaseItemLabelGenerator(xy);
-        renderer.setBaseItemLabelsVisible(true);
+        //renderer.setBaseItemLabelsVisible(true);
         renderer.setBaseLinesVisible(true);
 
         final ChartPanel barPanel = new ChartPanel(chart);

@@ -4,7 +4,7 @@ import javax.swing.UIManager;
 
 /**
  *
- * @author GetCode
+ * @author Fernando, Saul, Ernesto
  */
 public class FormularioChart extends javax.swing.JFrame {
 

@@ -17,7 +17,7 @@ import net.objecthunter.exp4j.ExpressionBuilder;
 
 /**
  *
- * @author Fernando
+ * @author Fernando, Saul, Ernesto
  */
 public class InterfazAjusteDeCurvas extends javax.swing.JFrame {
 
@@ -28,7 +28,7 @@ public class InterfazAjusteDeCurvas extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setResizable(false);
-        this.setSize(755, 500);
+        this.setSize(750, 500);
     }
     
     char[] letras = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j'};
@@ -97,8 +97,6 @@ public class InterfazAjusteDeCurvas extends javax.swing.JFrame {
         aplicarMetodo(tipoGrafica);
         llenarTablaResultados(tipoGrafica);
         generarFuncion(tipoGrafica);
-        
-        
     }
     
     public void llenarTablaMatriz(int e) {
@@ -148,7 +146,6 @@ public class InterfazAjusteDeCurvas extends javax.swing.JFrame {
                 tabla.setValueAt(matriz[i][j], i, 0);
             }
         }
-        
     }
     
     public void generarMultiplicaciones() {
@@ -377,12 +374,14 @@ public class InterfazAjusteDeCurvas extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Ajuste de curvas");
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        setBounds(new java.awt.Rectangle(0, 0, 0, 0));
+        setPreferredSize(new java.awt.Dimension(730, 480));
+        getContentPane().setLayout(null);
 
-        jPanel1.setBackground(new java.awt.Color(217, 233, 238));
+        jPanel1.setBackground(new java.awt.Color(237, 255, 255));
         jPanel1.setLayout(null);
 
-        jLabel1.setBackground(new java.awt.Color(9, 165, 165));
+        jLabel1.setBackground(new java.awt.Color(9, 201, 235));
         jLabel1.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -409,8 +408,9 @@ public class InterfazAjusteDeCurvas extends javax.swing.JFrame {
 
         txt_elementos.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jPanel1.add(txt_elementos);
-        txt_elementos.setBounds(340, 100, 110, 21);
+        txt_elementos.setBounds(340, 100, 110, 25);
 
+        tb_tabulacion.setBackground(new java.awt.Color(204, 204, 204));
         tb_tabulacion.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -433,8 +433,9 @@ public class InterfazAjusteDeCurvas extends javax.swing.JFrame {
         cb_tipoGrafica.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         cb_tipoGrafica.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Recta", "Parábola", "Cúbica", "Grado 4", "Grado 5", "Grado 6" }));
         jPanel1.add(cb_tipoGrafica);
-        cb_tipoGrafica.setBounds(340, 70, 110, 21);
+        cb_tipoGrafica.setBounds(340, 70, 110, 27);
 
+        tb_matriz.setBackground(new java.awt.Color(204, 204, 204));
         tb_matriz.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -448,7 +449,7 @@ public class InterfazAjusteDeCurvas extends javax.swing.JFrame {
         jPanel1.add(jScrollPane2);
         jScrollPane2.setBounds(160, 180, 430, 200);
 
-        jLabel5.setBackground(new java.awt.Color(9, 165, 165));
+        jLabel5.setBackground(new java.awt.Color(9, 201, 235));
         jLabel5.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -457,7 +458,7 @@ public class InterfazAjusteDeCurvas extends javax.swing.JFrame {
         jPanel1.add(jLabel5);
         jLabel5.setBounds(20, 150, 120, 30);
 
-        jLabel6.setBackground(new java.awt.Color(9, 165, 165));
+        jLabel6.setBackground(new java.awt.Color(9, 201, 235));
         jLabel6.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -466,6 +467,7 @@ public class InterfazAjusteDeCurvas extends javax.swing.JFrame {
         jPanel1.add(jLabel6);
         jLabel6.setBounds(610, 150, 120, 30);
 
+        tb_resultados.setBackground(new java.awt.Color(204, 204, 204));
         tb_resultados.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -479,7 +481,7 @@ public class InterfazAjusteDeCurvas extends javax.swing.JFrame {
         jPanel1.add(jScrollPane3);
         jScrollPane3.setBounds(610, 180, 120, 190);
 
-        jLabel7.setBackground(new java.awt.Color(9, 165, 165));
+        jLabel7.setBackground(new java.awt.Color(9, 201, 235));
         jLabel7.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -488,7 +490,7 @@ public class InterfazAjusteDeCurvas extends javax.swing.JFrame {
         jPanel1.add(jLabel7);
         jLabel7.setBounds(160, 150, 430, 30);
 
-        btn_aceptar.setBackground(new java.awt.Color(117, 215, 216));
+        btn_aceptar.setBackground(new java.awt.Color(117, 201, 221));
         btn_aceptar.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
         btn_aceptar.setText("Aceptar");
         btn_aceptar.setBorder(javax.swing.BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(11, 137, 191)));
@@ -502,7 +504,7 @@ public class InterfazAjusteDeCurvas extends javax.swing.JFrame {
         jPanel1.add(btn_aceptar);
         btn_aceptar.setBounds(470, 70, 100, 50);
 
-        btn_calcular.setBackground(new java.awt.Color(117, 215, 216));
+        btn_calcular.setBackground(new java.awt.Color(117, 201, 221));
         btn_calcular.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
         btn_calcular.setText("Calcular");
         btn_calcular.setBorder(javax.swing.BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(11, 137, 191)));
@@ -516,7 +518,7 @@ public class InterfazAjusteDeCurvas extends javax.swing.JFrame {
         jPanel1.add(btn_calcular);
         btn_calcular.setBounds(30, 350, 100, 50);
 
-        btn_graficar.setBackground(new java.awt.Color(117, 215, 216));
+        btn_graficar.setBackground(new java.awt.Color(117, 201, 221));
         btn_graficar.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
         btn_graficar.setText("Graficar");
         btn_graficar.setBorder(javax.swing.BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(11, 137, 191)));
@@ -530,7 +532,8 @@ public class InterfazAjusteDeCurvas extends javax.swing.JFrame {
         jPanel1.add(btn_graficar);
         btn_graficar.setBounds(620, 400, 100, 50);
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 750, 470));
+        getContentPane().add(jPanel1);
+        jPanel1.setBounds(0, 0, 750, 480);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
